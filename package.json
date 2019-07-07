@@ -4,12 +4,12 @@
   "description": "The Node server to run the server-side application",
   "main": "server.js",
   "scripts": {
-    "install-packages": "npm install && cd ./app && npm install",
+    "postinstall": "cd ./app && npm install",
     "watch:angular": "npm run build:watch --prefix app",
     "watch:node": "nodemon ./server.js 3000",
     "watch": "concurrently -n angular,node -c green.bold,cyan.bold npm:watch:angular npm:watch:node",
-    "start": "npm run install-packages && npm run watch",
-    "prod": "npm run install-packages && cd ./app && ng build --prod"
+    "start": "npm install && npm run watch",
+    "prod": "npm install && cd ./app && ng build --prod"
   },
   "repository": {
     "type": "git",
