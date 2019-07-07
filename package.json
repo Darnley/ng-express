@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "watch-angular": "npm run build:watch --prefix app",
-    "watch-node": "nodemon ./server.js localhost 3000",
+    "watch-node": "npm install && nodemon ./server.js localhost 3000",
     "start": "concurrently -n angular,node -c green.bold,cyan.bold npm:watch-angular npm:watch-node"
   },
   "repository": {
@@ -23,7 +23,9 @@
   },
   "homepage": "https://github.com/Darnley/ng-express#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "helmet": "^3.18.0"
   },
   "devDependencies": {
     "concurrently": "^4.1.1",
