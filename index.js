@@ -7,7 +7,7 @@ const app = express();
 
 require('dotenv').config();
 
-app.use(require('morgan')('default'));
+app.use(require('morgan')('common'));
 
 // Load the HTTP port
 const APPLICATION_PORT = Number(process.argv[2]) || Number(process.env.PORT) || 443;
