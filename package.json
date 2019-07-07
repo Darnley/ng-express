@@ -8,7 +8,8 @@
     "watch:angular": "npm run build:watch --prefix app",
     "watch:node": "nodemon ./server.js 3000",
     "watch": "concurrently -n angular,node -c green.bold,cyan.bold npm:watch:angular npm:watch:node",
-    "start": "npm install && npm run watch",
+    "prestart": "npm install",
+    "start": "npm run watch",
     "prod": "npm install && cd ./app && ng build --prod"
   },
   "repository": {
