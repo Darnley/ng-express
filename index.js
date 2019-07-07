@@ -1,14 +1,13 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-const helmet = require('helmet');
-const dotenv = require('dotenv');
-const compression = require('compression');
 const serveStatic = require('serve-static');
 
 const app = express();
 
-dotenv.config();
+require('dotenv').config();
+
+app.use(require('morgan')('default'));
 
 // Load the HTTP port
 const APPLICATION_PORT = Number(process.argv[2]) || Number(process.env.PORT) || 443;
@@ -17,10 +16,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Load security defaults
-app.use(helmet());
+app.use(require('helmet')());
 
 // Load compression package
-app.use(compression());
+app.use(require('compression')());
 
 // Serve static files from app/dist folder
 app.use(serveStatic(path.join(__dirname, 'dist'), { 'index': ['index.html'] }));
