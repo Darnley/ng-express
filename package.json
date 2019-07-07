@@ -4,9 +4,12 @@
   "description": "The Node server to run the server-side application",
   "main": "server.js",
   "scripts": {
-    "watch-angular": "npm run build:watch --prefix app",
-    "watch-node": "npm install && nodemon ./server.js localhost 3000",
-    "start": "concurrently -n angular,node -c green.bold,cyan.bold npm:watch-angular npm:watch-node"
+    "install-packages": "npm install && cd ./app && npm install",
+    "watch:angular": "npm run build:watch --prefix app",
+    "watch:node": "nodemon ./server.js 3000",
+    "watch": "concurrently -n angular,node -c green.bold,cyan.bold npm:watch:angular npm:watch:node",
+    "start": "npm run install-packages && npm run watch",
+    "prod": "npm run install-packages && cd ./app && ng build --prod"
   },
   "repository": {
     "type": "git",
@@ -24,6 +27,7 @@
   "homepage": "https://github.com/Darnley/ng-express#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "helmet": "^3.18.0"
