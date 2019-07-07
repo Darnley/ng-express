@@ -4,7 +4,9 @@
   "description": "The Node server to run the server-side application",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "watch-angular": "npm run build:watch --prefix app",
+    "watch-node": "nodemon ./server.js localhost 3000",
+    "start": "concurrently -n angular,node -c green.bold,cyan.bold npm:watch-angular npm:watch-node"
   },
   "repository": {
     "type": "git",
