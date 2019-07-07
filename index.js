@@ -18,11 +18,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(helmet());
 
 // Serve static files from app/dist folder
-app.use(express.static(path.join(__dirname, 'app/dist')));
+app.use(express.static(path.join(__dirname, 'dist')));
 
 // Process all other requests to the index.hml file
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'app/dist/index.html'));
+    res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
 app.listen(APPLICATION_PORT, () => {
