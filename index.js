@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const dotenv = require('dotenv');
 const compression = require('compression');
+const serveStatic = require('serve-static');
 
 const app = express();
 
@@ -22,7 +23,7 @@ app.use(helmet());
 app.use(compression());
 
 // Serve static files from app/dist folder
-app.use(express.static(path.join(__dirname, 'dist')));
+app.use(serveStatic(path.join(__dirname, 'dist'), { 'index': ['index.html'] }));
 
 // Process all other requests to the index.hml file
 app.get('*', (req, res) => {

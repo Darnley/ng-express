@@ -30,7 +30,8 @@
     "compression": "^1.7.4",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
-    "helmet": "^3.18.0"
+    "helmet": "^3.18.0",
+    "serve-static": "^1.14.1"
   },
   "devDependencies": {
     "concurrently": "^4.1.1",
