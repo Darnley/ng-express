@@ -21,6 +21,8 @@ app.use(require('helmet')());
 // Load compression package
 app.use(require('compression')());
 
+app.get('/healthcheck', (req, res) => res.status(200).json("healthy"));
+
 // Serve static files from app/dist folder
 app.use(serveStatic(path.join(__dirname, 'dist'), { 'index': ['index.html'] }));
 
