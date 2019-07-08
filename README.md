@@ -16,13 +16,13 @@ First of all, rename the `.env.example` file to `.env`. It will be used as an ap
 In development environment you can just run the following command in NgExpress root folder. It will install all the dependencies for NgExpress and the Angular application inside `/app` folder.
 
 ```bash
-npm install
+$ npm install
 ```
 
 If you would like to run the application watching its changes, just run the following command. It will also run `npm install`.
 
 ```bash
-npm start
+$ npm start
 ```
 
 ### Production environment
@@ -31,7 +31,7 @@ This package is ready for Docker. If you build the image and run the container, 
 If you would like to publish the code yourself, just run the following command in the application's root folder.
 
 ```bash
-npm run prod
+$ npm run prod
 ```
 
 It will compile the Angular application into `/dist` folder in production mode. After that, you are free to delete `/app` folder in production environment to reduce disk usage.
@@ -41,10 +41,35 @@ After compiling your Angular application, change the `NODE_ENV` in your environm
 Last of all, execute the application using you Node.js runtime.
 
 ```bash
-node ./index.js
+$ node ./index.js
 ```
 
 The Dockerfile uses [PM2](http://pm2.keymetrics.io) to manage the Node.js process. You are free to use another process manager.
+
+#### Using Dockerfile
+
+First of all, you should build your Docker image. In a command prompt of your choice, run the following command to create an image. The `-t` flag lets you tag your image so it's easier to find later using the `docker images` command.
+
+```bash
+$ docker build -t <your namespace>/<your application name> .
+```
+
+Your image will now be listed by Docker.
+
+```bash
+$ docker images
+
+# Example
+REPOSITORY                                  TAG        ID              CREATED
+node                                        10         1934b0b038d1    5 days ago
+<your namespace>/<your application name>    latest     d64d3505b0d2    1 minute ago
+```
+
+Running your image with `-d` runs the container in detached mode, leaving the container running in the background. The `-p` flag redirects a public port to a private port inside the container. Run the image you previously built.
+
+```bash
+$ docker run -p 49160:3000 -d <your namespace>/<your application name>
+```
 
 ## Using another Angular application
 This package is delivered with a standard and basic Angular application. If you would like to use your already existent Angular application, just follow these steps:
@@ -53,6 +78,7 @@ This package is delivered with a standard and basic Angular application. If you 
 - Copy your existent Angular application or create a new one in `/app` folder
 - In `angular.json` file, change the `outputPath` parameter value to `../dist`
 - In `package.json` file, add the following script in `scripts` object
+
 ```json
 "build:watch": "ng build --watch=true"
 ```
