@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const serveStatic = require('serve-static');
+const cache = require('./cache')
 
 const app = express();
 
@@ -22,6 +23,8 @@ app.use(require('helmet')());
 app.use(require('compression')());
 
 app.get('/healthcheck', (req, res) => res.status(200).json("healthy"));
+
+app.use(cache(30));
 
 // Serve static files from app/dist folder
 app.use(serveStatic(path.join(__dirname, 'dist'), { 'index': ['index.html'] }));
