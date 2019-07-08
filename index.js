@@ -2,11 +2,12 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const serveStatic = require('serve-static');
-const cache = require('./cache')
-
-const app = express();
+const cache = require('./cache');
+const clientSideCache = require('./cache');
 
 require('dotenv').config();
+
+const app = express();
 
 app.use(require('morgan')('common'));
 
@@ -24,7 +25,14 @@ app.use(require('compression')());
 
 app.get('/healthcheck', (req, res) => res.status(200).json("healthy"));
 
-app.use(cache(30));
+// Only enable caching when environment is not development
+if (app.get('env') !== 'development') {
+    // Set server-side caching
+    app.use(cache.middleware(process.env.SERVER_SIDE_CACHE_SECONDS || 15));
+
+    // Set client-side caching
+    cache.clientSideCache(app);
+}
 
 // Serve static files from app/dist folder
 app.use(serveStatic(path.join(__dirname, 'dist'), { 'index': ['index.html'] }));
