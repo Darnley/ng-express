@@ -38,7 +38,7 @@ const cache = {
             next();
         });
 
-        app.use('*.html|*.htm|*.png|*.jpg|*.svg|*.gif', (req, res, next) => {
+        app.use('*.html|*.htm|*.png|*.jpg|*.svg|*.gif|*.ico', (req, res, next) => {
             // Set caching html and image files
             res.set('Cache-Control', `public, max-age=${process.env.CLIENT_SIDE_HTML_N_IMAGES_CACHE_SECONDS || 600}`);
             next();
