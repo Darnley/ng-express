@@ -4,13 +4,13 @@
   "description": "The Node server to run the server-side application",
   "main": "server.js",
   "scripts": {
-    "postinstall": "cd ./app && npm install",
+    "postinstall": "cd app && npm install",
     "watch:angular": "npm run build:watch --prefix app",
     "watch:node": "nodemon ./server.js 3000",
     "watch": "concurrently -n angular,node -c green.bold,cyan.bold npm:watch:angular npm:watch:node",
     "prestart": "npm install",
     "start": "npm run watch",
-    "prod": "npm install && cd ./app && ng build --prod"
+    "prod": "npm install && cd app && ng build --prod"
   },
   "repository": {
     "type": "git",
@@ -39,5 +39,8 @@
   "devDependencies": {
     "concurrently": "^4.1.1",
     "nodemon": "^1.19.1"
+  },
+  "config": {
+    "unsafe-perm": true
   }
 }
