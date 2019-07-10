@@ -76,14 +76,8 @@ This package is delivered with a standard and basic Angular application. If you 
 
 - Remove all the files from `/app` folder
 - Copy your existent Angular application or create a new one in `/app` folder
-- In `angular.json` file, change the `outputPath` parameter value to `../dist`
-- In `package.json` file, add the following script in `scripts` object
 
-```json
-"build:watch": "ng build --watch=true"
-```
-
-That is all.
+You must have `@angular/cli` globally installed, otherwise you should modify the scripts in the `package.json` file.
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
