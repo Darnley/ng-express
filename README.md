@@ -71,6 +71,8 @@ Running your image with `-d` runs the container in detached mode, leaving the co
 $ docker run -p 49160:3000 -d <your namespace>/<your application name>
 ```
 
+The `49160` is the host port which will forward the traffic to port `3000` in Docker machine. In this example, just access `http://localhost:49160` through your favorite browser. You are free to change this port.
+
 ## Using another Angular application
 This package is delivered with a standard and basic Angular application. If you would like to use your already existent Angular application, just follow these steps:
 
