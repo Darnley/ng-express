@@ -5,12 +5,12 @@
   "main": "server.js",
   "scripts": {
     "postinstall": "cd app && npm install",
-    "watch:angular": "npm run build:watch --prefix app",
+    "watch:angular": "cd app && ng build --watch=true --outputPath=../dist",
     "watch:node": "nodemon ./server.js 3000",
     "watch": "concurrently -n angular,node -c green.bold,cyan.bold npm:watch:angular npm:watch:node",
     "prestart": "npm install",
     "start": "npm run watch",
-    "prod": "npm install && cd app && ng build --prod"
+    "prod": "npm install && cd app && ng build --prod --outputPath=../dist"
   },
   "repository": {
     "type": "git",
